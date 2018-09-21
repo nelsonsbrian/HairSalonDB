@@ -12,8 +12,8 @@ namespace HairSalon.Controllers
             return View("Index", Stylist.GetAll());
         }
 
-        [HttpPost("/stylists/Create")]
-        public ActionResult Create(string newName, int newPay, string newStartDate)
+        [HttpPost("/stylists/create")]
+        public ActionResult StylistCreate(string newName, int newPay, string newStartDate)
         {
             Stylist newStylist = new Stylist(newName, newPay, Convert.ToDateTime(newStartDate));
             newStylist.Create();
@@ -21,17 +21,24 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost("/stylists/delete/{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult StylistDelete(int id)
         {
             Stylist.Delete(id);
             return RedirectToAction("Index");
         }
 
-        [HttpPost("/stylists/Client/Create")]
-        public ActionResult Create(string newName, string newAddress, string newphone, int newStylistId)
+        [HttpPost("/stylists/client/create")]
+        public ActionResult ClientCreate(string newName, string newAddress, string newphone, int newStylistId)
         {
             Client newClient = new Client(newName, newAddress, newphone, newStylistId);
             newClient.Create();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("/stylists/client/delete/{id}")]
+        public ActionResult ClientDelete(int id)
+        {
+            Client.Delete(id);
             return RedirectToAction("Index");
         }
 

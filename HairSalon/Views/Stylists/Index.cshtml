@@ -74,7 +74,9 @@
                             {
                                 @if(@client.StylistId == stylist.Id)
                                 {
-                                  @client.Name;<br>
+                                  @client.Name;
+                                  <a href="/stylists/client/delete/@client.Id" method='get'>>Delete<</a>
+                                  <br>
                                 }
                             }
                         </td>
@@ -86,6 +88,7 @@
                                         @foreach (Client client in @Client.GetAll())
                                         {
                                         <option value="@client.Id">@client.Name</option>
+
                                         }
                                     </select>
                                     <button class='btn btn-success' type='submit'>Add Client</button>
@@ -94,7 +97,7 @@
 
                         </td>
                         <td>
-                            <form action='/restaurants/delete/restaurant.Id' method='post'>
+                            <form action='/stylists/delete/@stylist.Id' method='post'>
                                 <button class='btn btn-danger' type='submit'>Delete</button>
                             </form>
                         </td>
