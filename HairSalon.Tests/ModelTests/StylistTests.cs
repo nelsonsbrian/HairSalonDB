@@ -6,63 +6,70 @@ using MySql.Data.MySqlClient;
 using static HairSalon.Startup;
 
 
-namespace HairSalon.Tests {
-    [TestClass]
-    public class StylistTests : IDisposable {
+namespace HairSalon.Tests
+  {
+  [TestClass]
+  public class StylistTests : IDisposable
+  {
 
-        public StylistTests () {
-            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=brian_nelson_test;";
-        }
-
-        public void Dispose () {
-            Stylist.ClearAll ();
-        }
-
-        [TestMethod]
-        public void GetAll_StylistsEmptyAtFirst_0 () {
-            int result = Stylist.GetAll ().Count;
-            Assert.AreEqual (0, result);
-        }
-
-        // [TestMethod]
-        // public void Create_CuisineAddedCorrectly_True () {
-        //     Cuisine newfood = new Cuisine ("Mexican");
-        //     newfood.Create ();
-        //
-        //     Cuisine test = Cuisine.GetAll () [0];
-        //     Assert.AreEqual (newfood.FoodType, test.FoodType);
-        // }
-        //
-        // [TestMethod]
-        // public void ClearAll_DeleteAllCusines_Int ()
-        // {
-        //     Cuisine newfood1 = new Cuisine ("Mexican");
-        //     newfood1.Create ();
-        //     Cuisine newfood2 = new Cuisine ("American");
-        //     newfood2.Create ();
-        //     Cuisine newfood3 = new Cuisine ("Italian");
-        //     newfood3.Create ();
-        //     Cuisine newfood4 = new Cuisine ("Chinese");
-        //     newfood4.Create ();
-        //     Cuisine.ClearAll();
-        //     Cuisine newfood5 = new Cuisine ("Vietnamese");
-        //     newfood5.Create ();
-        //     int result = Cuisine.GetAll().Count;
-        //     Assert.AreEqual( result, 1);
-        // }
-        //
-        // [TestMethod]
-        // public void Update_ChangeCuisineNameCorrectly_True()
-        // {
-        //     Cuisine newFood = new Cuisine("Mexican");
-        //
-        //     newFood.Create();
-        //     Console.WriteLine(newFood.Id);
-        //     newFood.Update("Fake Mexican");
-        //
-        //     Cuisine result = Cuisine.GetAll()[0];
-        //
-        //     Assert.AreEqual("Fake Mexican",newFood.FoodType);
-        // }
+    public StylistTests ()
+    {
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=brian_nelson_test;";
     }
+
+    public void Dispose()
+    {
+      Stylist.ClearAll();
+    }
+
+    [TestMethod] // test to see if database is cleared between tests
+    public void GetAll_StylistsEmptyAtFirst_0()
+    {
+      Stylist.ClearAll();  
+      int result = Stylist.GetAll().Count;
+      Assert.AreEqual(0, result);
+    }
+
+    // [TestMethod] // test to see if .Create and is creating in DB
+    // public void Create_StylistAddedCorrectly_True()
+    // {
+    //   Stylist newfood = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+    //   newfood.Create();
+    //
+    //   Stylist test = Stylist.GetAll()[0];
+    //   Assert.AreEqual ("Jose", test.Name);
+    // }
+    //
+    // [TestMethod]
+    // public void ClearAll_DeleteAllCusines_Int ()
+    // {
+    //     Stylist newfood1 = new Stylist ("Mexican");
+    //     newfood1.Create ();
+    //     Stylist newfood2 = new Stylist ("American");
+    //     newfood2.Create ();
+    //     Stylist newfood3 = new Stylist ("Italian");
+    //     newfood3.Create ();
+    //     Stylist newfood4 = new Stylist ("Chinese");
+    //     newfood4.Create ();
+    //     Stylist.ClearAll();
+    //     Stylist newfood5 = new Stylist ("Vietnamese");
+    //     newfood5.Create ();
+    //     int result = Stylist.GetAll().Count;
+    //     Assert.AreEqual( result, 1);
+    // }
+    //
+    // [TestMethod]
+    // public void Update_ChangeStylistNameCorrectly_True()
+    // {
+    //     Stylist newFood = new Stylist("Mexican");
+    //
+    //     newFood.Create();
+    //     Console.WriteLine(newFood.Id);
+    //     newFood.Update("Fake Mexican");
+    //
+    //     Stylist result = Stylist.GetAll()[0];
+    //
+    //     Assert.AreEqual("Fake Mexican",newFood.FoodType);
+    // }
+  }
 }
