@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using BestRestaurants.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MySql.Data.MySqlClient;
-using static BestRestaurants.Startup;
+using static HairSalon.Startup;
 
-namespace BestRestaurants.Tests {
+namespace HairSalon.Tests {
     [TestClass]
     public class CuisineTests : IDisposable {
 
         public CuisineTests () {
-            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=best_restaurants_test;";
+            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=brian_nelson_test;";
         }
 
         public void Dispose () {
@@ -31,7 +31,7 @@ namespace BestRestaurants.Tests {
             Cuisine test = Cuisine.GetAll () [0];
             Assert.AreEqual (newfood.FoodType, test.FoodType);
         }
-        
+
         [TestMethod]
         public void ClearAll_DeleteAllCusines_Int ()
         {
@@ -45,7 +45,7 @@ namespace BestRestaurants.Tests {
             newfood4.Create ();
             Cuisine.ClearAll();
             Cuisine newfood5 = new Cuisine ("Vietnamese");
-            newfood5.Create ();            
+            newfood5.Create ();
             int result = Cuisine.GetAll().Count;
             Assert.AreEqual( result, 1);
         }
@@ -54,7 +54,7 @@ namespace BestRestaurants.Tests {
         public void Update_ChangeCuisineNameCorrectly_True()
         {
             Cuisine newFood = new Cuisine("Mexican");
-            
+
             newFood.Create();
             Console.WriteLine(newFood.Id);
             newFood.Update("Fake Mexican");
