@@ -64,22 +64,26 @@ namespace HairSalon.Tests
         int result = Client.GetAll().Count;
         Assert.AreEqual(result, 3);
     }
-    //
-    // [TestMethod] // test to see if delete removes the proper db item
-    // public void Delete_DeleteCusines_Count ()
-    // {
-    //     Client.ClearAll();
-    //     Client newClient1 = new Client ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
-    //     newClient1.Create();
-    //     Client newClient2 = new Client ("Maggie", 22,  Convert.ToDateTime("2015-02-02"));
-    //     newClient2.Create();
-    //     Client newClient3 = new Client ("Fred", 14,  Convert.ToDateTime("2013-02-02"));
-    //     newClient3.Create();
-    //     Client.Delete(newClient2.Id);
-    //     int result = Client.GetAll().Count;
-    //     Assert.AreEqual(result, 2);
-    // }
-    //
+
+    [TestMethod] // test to see if delete removes the proper db item
+    public void Delete_DeleteClients_Count ()
+    {
+        Client.ClearAll();
+        Stylist.ClearAll();
+        Stylist newStylist = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        newStylist.Create();
+        int inputId = newStylist.Id;
+        Client newClient1 = new Client ("Ben", "123 Main", "123-133-3333", inputId);
+        newClient1.Create();
+        Client newClient2 = new Client ("John", "123 Main", "123-133-3333", inputId);
+        newClient2.Create();
+        Client newClient3 = new Client ("Ralph", "123 Main", "123-133-3333", inputId);
+        newClient3.Create();
+        Client.Delete(newClient2.Id);
+        int result = Client.GetAll().Count;
+        Assert.AreEqual(result, 2);
+    }
+
     // [TestMethod] // test to see if find function returns proper stylist
     // public void Find_FindClient_Name ()
     // {

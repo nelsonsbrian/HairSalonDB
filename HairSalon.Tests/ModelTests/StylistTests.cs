@@ -56,7 +56,7 @@ namespace HairSalon.Tests
     }
 
     [TestMethod] // test to see if delete removes the proper db item
-    public void Delete_DeleteCusines_Count ()
+    public void Delete_DeleteStylists_Count ()
     {
         Stylist.ClearAll();
         Stylist newStylist1 = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
