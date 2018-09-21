@@ -46,16 +46,20 @@ namespace HairSalon.Tests
       Client test = Client.GetAll()[0];
       Assert.AreEqual("Ben", test.Name);
     }
-    
+
     [TestMethod] // test to see if getall returns all lines in DB
-    public void GetAll_GetAllCusines_Int ()
+    public void GetAll_GetAllClients_Int ()
     {
         Client.ClearAll();
-        Client newClient1 = new Client ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        Stylist.ClearAll();
+        Stylist newStylist = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        newStylist.Create();
+        int inputId = newStylist.Id;
+        Client newClient1 = new Client ("Ben", "123 Main", "123-133-3333", inputId);
         newClient1.Create();
-        Client newClient2 = new Client ("Maggie", 22,  Convert.ToDateTime("2015-02-02"));
+        Client newClient2 = new Client ("John", "123 Main", "123-133-3333", inputId);
         newClient2.Create();
-        Client newClient3 = new Client ("Fred", 14,  Convert.ToDateTime("2013-02-02"));
+        Client newClient3 = new Client ("Ralph", "123 Main", "123-133-3333", inputId);
         newClient3.Create();
         int result = Client.GetAll().Count;
         Assert.AreEqual(result, 3);

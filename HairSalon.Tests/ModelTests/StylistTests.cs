@@ -42,7 +42,7 @@ namespace HairSalon.Tests
     }
 
     [TestMethod] // test to see if getall returns all lines in DB
-    public void GetAll_GetAllCusines_Int ()
+    public void GetAll_GetAllStylists_Int ()
     {
         Stylist.ClearAll();
         Stylist newStylist1 = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
