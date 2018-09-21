@@ -1,30 +1,42 @@
 @using HairSalon.Models
 
+<div class="jumbotron">
+  <h1>3rd Street Hair Salon: Roster/Client Base</hr>
+</div>
 <div class="container-fluid">
     <h1>Stylists</h1>
     <div class="row">
         <div class="col-md-2">
             <form class="form-group" action='/stylists/Create' method='post'>
-                <label>Stylist name
-                    <input type="text" name="newName" class="form-control" required>
-                </label>
-                <label>Start Date
-                    <input type="date" name="newStartDate" class="form-control" required>
-                </label>
-                <label>Pay
-                    <input type="text" name="newPay" class="form-control" required>
-                </label>
+                <label>Stylist name</label>
+                <input type="text" name="newName" class="form-control" required>
+                <label>Start Date</label>
+                <input type="date" name="newStartDate" class="form-control" required>
+                <label>Pay</label>
+                <input type="number" name="newPay" class="form-control" required>
                 <button class='btn btn-success'>Add Stylist</button>
             </form>
-
+            <hr>
             @foreach (Stylist stylist in @Stylist.GetAll())
             {
             @stylist.Name<br>
-            <hr>
-            }<br>
+            } <br>
             <h4>Clients</h4>
-            <form class="form-group" action='/clients' method='post'>
-                <input type="text" name="newCuisine" class="form-control" required><br>
+            <form class="form-group" action='/stylists/Client/Create' method='post'>
+              <label>Client name</label>
+              <input type="text" name="newName" class="form-control" required>
+              <label>Address</label>
+              <input type="text" name="newAddress" class="form-control" required>
+              <label>Phone</label>
+              <input type="tel" name="newphone" class="form-control" required>
+              <label>Stylist</label>
+              <select name="newStylistId" class="form-control" required>
+                  <option value=""></option>
+                  @foreach (Stylist stylist in @Stylist.GetAll())
+                  {
+                  <option value="@stylist.Id">@stylist.Name</option>
+                  }
+              </select>
                 <button class='btn btn-success'>Add Client</button>
             </form>
             <hr>
@@ -41,60 +53,54 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Restaurant Name</th>
-                        <th scope="col">Cuisine</th>
-                        <th scope="col">Add Cuisine</th>
-                        <th scope="col">City</th>
-                        <th scope="col">State</th>
+                        <th scope="col">Stylist Name</th>
+                        <th scope="col">StartDate</th>
+                        <th scope="col">Wage</th>
+                        <th scope="col">Clients</th>
+                        <th scope="col">Add</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
 
-                @* @foreach (var restaurant in @Model["restaurants"])
+                @foreach (Stylist stylist in @Stylist.GetAll())
                 {
                 <tbody>
                     <tr>
-                        <td>@restaurant.Name</td>
+                        <td>@stylist.Name</td>
+                        <td>@stylist.StartDate</td>
+                        <td>@stylist.Wage</td>
                         <td>
-                            @foreach (var menu in @Model["menus"])
+                            @foreach (Client client in @Client.GetAll())
                             {
-                                @if(@menu.RestaurantId == @restaurant.Id)
+                                @if(@client.StylistId == stylist.Id)
                                 {
-                                    @foreach (var cuisine in @Model["clients"])
-                                    {
-                                        @if(@menu.CuisineId == @cuisine.Id)
-                                    {
-                                        @cuisine.FoodType;<br>
-                                    }
+                                  @client.Name;<br>
                                 }
                             }
-                        }
                         </td>
                         <td>
-                            <form action='/restaurants/@restaurant.Id/Add' method='post'>
+                            <form action='/restaurants/restaurant.Id/Add' method='post'>
                                 <div>
-                                    <select id="clientsSelect" name="clientsSelect">
+                                    <select name="clientsSelect">
 
-                                        @foreach (var cuisine in @Model["clients"])
+                                        @foreach (Client client in @Client.GetAll())
                                         {
-                                        <option value="@cuisine.FoodType">@cuisine.FoodType</option>
+                                        <option value="@client.Id">@client.Name</option>
                                         }
                                     </select>
-                                </div><br>
-                                <button class='btn btn-success' type='submit'>Add Cuisine</button>
+                                    <button class='btn btn-success' type='submit'>Add Client</button>
+                                </div>
                             </form>
 
                         </td>
-                        <td>@restaurant.City</td>
-                        <td>@restaurant.State</td>
                         <td>
-                            <form action='/restaurants/delete/@restaurant.Id' method='post'>
+                            <form action='/restaurants/delete/restaurant.Id' method='post'>
                                 <button class='btn btn-danger' type='submit'>Delete</button>
                             </form>
                         </td>
                     </tr>
                 </tbody>
-                } *@
+                }
             </table>
         </div>
     </div>
