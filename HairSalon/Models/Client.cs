@@ -27,7 +27,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand()as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO `clients` (`name`, `address`, `phone`, `stylistId`) VALUES (@name, @adress, @phone, @stylistId);";
+            cmd.CommandText = @"INSERT INTO `clients` (`name`, `address`, `phone`, `stylist_id`) VALUES (@name, @address, @phone, @stylistId);";
             cmd.Parameters.AddWithValue("@name", this.Name);
             cmd.Parameters.AddWithValue("@address", this.Address);
             cmd.Parameters.AddWithValue("@phone", this.Phone);

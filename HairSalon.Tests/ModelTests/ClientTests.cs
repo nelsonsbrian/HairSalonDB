@@ -20,40 +20,46 @@ namespace HairSalon.Tests
     public void Dispose()
     {
       Client.ClearAll();
+      Stylist.ClearAll();
     }
 
     [TestMethod] // test to see if database is cleared between tests
     public void GetAll_ClientsEmptyAtFirst_0()
     {
       Client.ClearAll();
+      Stylist.ClearAll();
       int result = Client.GetAll().Count;
       Assert.AreEqual(0, result);
     }
 
-    // [TestMethod] // test to see if .Create and is creating in DB
-    // public void Create_ClientAddedCorrectly_True()
-    // {
-    //   Client.ClearAll();
-    //   Client newClient = new Client ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
-    //   newClient.Create();
-    //
-    //   Client test = Client.GetAll()[0];
-    //   Assert.AreEqual("Jose", test.Name);
-    // }
-    //
-    // [TestMethod] // test to see if getall returns all lines in DB
-    // public void GetAll_GetAllCusines_Int ()
-    // {
-    //     Client.ClearAll();
-    //     Client newClient1 = new Client ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
-    //     newClient1.Create();
-    //     Client newClient2 = new Client ("Maggie", 22,  Convert.ToDateTime("2015-02-02"));
-    //     newClient2.Create();
-    //     Client newClient3 = new Client ("Fred", 14,  Convert.ToDateTime("2013-02-02"));
-    //     newClient3.Create();
-    //     int result = Client.GetAll().Count;
-    //     Assert.AreEqual(result, 3);
-    // }
+    [TestMethod] // test to see if .Create and is creating in DB
+    public void Create_ClientAddedCorrectly_True()
+    {
+      Client.ClearAll();
+      Stylist.ClearAll();
+      Stylist newStylist = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+      newStylist.Create();
+      int inputId = newStylist.Id;
+      Client newClient = new Client ("Ben", "123 Main", "123-133-3333", inputId);
+      newClient.Create();
+
+      Client test = Client.GetAll()[0];
+      Assert.AreEqual("Ben", test.Name);
+    }
+    
+    [TestMethod] // test to see if getall returns all lines in DB
+    public void GetAll_GetAllCusines_Int ()
+    {
+        Client.ClearAll();
+        Client newClient1 = new Client ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        newClient1.Create();
+        Client newClient2 = new Client ("Maggie", 22,  Convert.ToDateTime("2015-02-02"));
+        newClient2.Create();
+        Client newClient3 = new Client ("Fred", 14,  Convert.ToDateTime("2013-02-02"));
+        newClient3.Create();
+        int result = Client.GetAll().Count;
+        Assert.AreEqual(result, 3);
+    }
     //
     // [TestMethod] // test to see if delete removes the proper db item
     // public void Delete_DeleteCusines_Count ()
