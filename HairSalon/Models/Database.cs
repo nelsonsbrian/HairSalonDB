@@ -1,7 +1,7 @@
 using System;
 using MySql.Data.MySqlClient;
-using BestRestaurants;
-using static BestRestaurants.Startup;
+using HairSalon;
+using static HairSalon.Startup;
 
 namespace HairSalon.Models
 {
