@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 namespace HairSalon.Controllers
 {
-    public class HomeController:Controller
+    public class ClientsController:Controller
     {
-        [HttpGet("/")]
+        [HttpGet("/clients")]
         public ActionResult Index()
         {
             return View();

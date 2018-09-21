@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\HairSalon",
+    "\\HairSalon.Tests",
+    "\\HairSalon.Tests\\ModelTests",
+    "\\HairSalon.Tests\\obj",
+    "\\HairSalon\\Controllers",
+    "\\HairSalon\\Models",
+    "\\HairSalon\\Views"
+  ],
+  "SelectedNode": "\\HairSalon\\Models\\Database.cs",
+  "PreviewInSolutionExplorer": false
+}

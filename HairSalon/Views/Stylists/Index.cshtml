@@ -1,0 +1,102 @@
+@using HairSalon.Models
+
+<div class="container-fluid">
+    <h1>Stylists</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <form class="form-group" action='/stylists/Create' method='post'>
+                <label>Stylist name
+                    <input type="text" name="newName" class="form-control" required>
+                </label>
+                <label>Start Date
+                    <input type="date" name="newStartDate" class="form-control" required>
+                </label>
+                <label>Pay
+                    <input type="text" name="newPay" class="form-control" required>
+                </label>
+                <button class='btn btn-success'>Add Stylist</button>
+            </form>
+
+            @foreach (Stylist stylist in @Stylist.GetAll())
+            {
+            @stylist.Name<br>
+            <hr>
+            }<br>
+            <h4>Clients</h4>
+            <form class="form-group" action='/clients' method='post'>
+                <input type="text" name="newCuisine" class="form-control" required><br>
+                <button class='btn btn-success'>Add Client</button>
+            </form>
+            <hr>
+
+            @foreach (Client clients in @Client.GetAll())
+            {
+            @clients.Name<br>
+            }<br>
+            <form action='/' method='get'>
+                <button class='btn btn-info'>Back to Home</button>
+            </form><br>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Restaurant Name</th>
+                        <th scope="col">Cuisine</th>
+                        <th scope="col">Add Cuisine</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+
+                @* @foreach (var restaurant in @Model["restaurants"])
+                {
+                <tbody>
+                    <tr>
+                        <td>@restaurant.Name</td>
+                        <td>
+                            @foreach (var menu in @Model["menus"])
+                            {
+                                @if(@menu.RestaurantId == @restaurant.Id)
+                                {
+                                    @foreach (var cuisine in @Model["clients"])
+                                    {
+                                        @if(@menu.CuisineId == @cuisine.Id)
+                                    {
+                                        @cuisine.FoodType;<br>
+                                    }
+                                }
+                            }
+                        }
+                        </td>
+                        <td>
+                            <form action='/restaurants/@restaurant.Id/Add' method='post'>
+                                <div>
+                                    <select id="clientsSelect" name="clientsSelect">
+
+                                        @foreach (var cuisine in @Model["clients"])
+                                        {
+                                        <option value="@cuisine.FoodType">@cuisine.FoodType</option>
+                                        }
+                                    </select>
+                                </div><br>
+                                <button class='btn btn-success' type='submit'>Add Cuisine</button>
+                            </form>
+
+                        </td>
+                        <td>@restaurant.City</td>
+                        <td>@restaurant.State</td>
+                        <td>
+                            <form action='/restaurants/delete/@restaurant.Id' method='post'>
+                                <button class='btn btn-danger' type='submit'>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+                } *@
+            </table>
+        </div>
+    </div>
+
+</div>
