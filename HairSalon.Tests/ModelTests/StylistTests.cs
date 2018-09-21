@@ -25,21 +25,22 @@ namespace HairSalon.Tests
     [TestMethod] // test to see if database is cleared between tests
     public void GetAll_StylistsEmptyAtFirst_0()
     {
-      Stylist.ClearAll();  
+      Stylist.ClearAll();
       int result = Stylist.GetAll().Count;
       Assert.AreEqual(0, result);
     }
 
-    // [TestMethod] // test to see if .Create and is creating in DB
-    // public void Create_StylistAddedCorrectly_True()
-    // {
-    //   Stylist newfood = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
-    //   newfood.Create();
-    //
-    //   Stylist test = Stylist.GetAll()[0];
-    //   Assert.AreEqual ("Jose", test.Name);
-    // }
-    //
+    [TestMethod] // test to see if .Create and is creating in DB
+    public void Create_StylistAddedCorrectly_True()
+    {
+      Stylist.ClearAll();
+      Stylist newfood = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+      newfood.Create();
+
+      Stylist test = Stylist.GetAll()[0];
+      Assert.AreEqual ("Jose", test.Name);
+    }
+
     // [TestMethod]
     // public void ClearAll_DeleteAllCusines_Int ()
     // {
