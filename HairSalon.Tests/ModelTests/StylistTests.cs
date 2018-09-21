@@ -34,31 +34,55 @@ namespace HairSalon.Tests
     public void Create_StylistAddedCorrectly_True()
     {
       Stylist.ClearAll();
-      Stylist newfood = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
-      newfood.Create();
+      Stylist newStylist = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+      newStylist.Create();
 
       Stylist test = Stylist.GetAll()[0];
-      Assert.AreEqual ("Jose", test.Name);
+      Assert.AreEqual("Jose", test.Name);
     }
 
-    // [TestMethod]
-    // public void ClearAll_DeleteAllCusines_Int ()
-    // {
-    //     Stylist newfood1 = new Stylist ("Mexican");
-    //     newfood1.Create ();
-    //     Stylist newfood2 = new Stylist ("American");
-    //     newfood2.Create ();
-    //     Stylist newfood3 = new Stylist ("Italian");
-    //     newfood3.Create ();
-    //     Stylist newfood4 = new Stylist ("Chinese");
-    //     newfood4.Create ();
-    //     Stylist.ClearAll();
-    //     Stylist newfood5 = new Stylist ("Vietnamese");
-    //     newfood5.Create ();
-    //     int result = Stylist.GetAll().Count;
-    //     Assert.AreEqual( result, 1);
-    // }
-    //
+    [TestMethod] // test to see if getall returns all lines in DB
+    public void GetAll_GetAllCusines_Int ()
+    {
+        Stylist.ClearAll();
+        Stylist newStylist1 = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        newStylist1.Create();
+        Stylist newStylist2 = new Stylist ("Maggie", 22,  Convert.ToDateTime("2015-02-02"));
+        newStylist2.Create();
+        Stylist newStylist3 = new Stylist ("Fred", 14,  Convert.ToDateTime("2013-02-02"));
+        newStylist3.Create();
+        int result = Stylist.GetAll().Count;
+        Assert.AreEqual(result, 3);
+    }
+
+    [TestMethod] // test to see if delete removes the proper db item
+    public void Delete_DeleteCusines_Count ()
+    {
+        Stylist.ClearAll();
+        Stylist newStylist1 = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        newStylist1.Create();
+        Stylist newStylist2 = new Stylist ("Maggie", 22,  Convert.ToDateTime("2015-02-02"));
+        newStylist2.Create();
+        Stylist newStylist3 = new Stylist ("Fred", 14,  Convert.ToDateTime("2013-02-02"));
+        newStylist3.Create();
+        Stylist.Delete(newStylist2.Id);
+        int result = Stylist.GetAll().Count;
+        Assert.AreEqual(result, 2);
+    }
+
+    [TestMethod] // test to see if find function returns proper stylist
+    public void Find_FindStylist_Name ()
+    {
+        Stylist.ClearAll();
+        Stylist newStylist1 = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        Console.WriteLine(newStylist1.Id);
+        newStylist1.Create();
+        Console.WriteLine(newStylist1.Id);
+        Stylist test = Stylist.Find(newStylist1.Id);
+        Console.WriteLine(test.Id);
+        Assert.AreEqual("Jose", test.Name);
+    }
+
     // [TestMethod]
     // public void Update_ChangeStylistNameCorrectly_True()
     // {

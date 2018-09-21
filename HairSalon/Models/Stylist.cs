@@ -84,6 +84,24 @@ namespace HairSalon.Models
             }
         }
 
+        public static void Delete(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand()as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM `stylists`where id = @id;";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
         // public void Update(string newFoodType)
         // {
         //     MySqlConnection conn = DB.Connection();
@@ -106,26 +124,31 @@ namespace HairSalon.Models
         //     }
         // }
 
-        public static int FindId(string stylistId)
+        public static Stylist Find(int stylistId)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
 
             var cmd = conn.CreateCommand()as MySqlCommand;
-            cmd.CommandText = @"SELECT id FROM `stylists` WHERE name = @name;";
-            cmd.Parameters.AddWithValue("@name", stylistId);
+            cmd.CommandText = @"SELECT * FROM `stylists` WHERE id = @id;";
+            cmd.Parameters.AddWithValue("@id", stylistId);
 
-            MySqlDataReader rdr = cmd.ExecuteReader()as MySqlDataReader;
-
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             rdr.Read();
-            int newId = rdr.GetInt32(0);
+
+            int Id = rdr.GetInt32(0);
+            string Name = rdr.GetString(1);
+            int Wage = rdr.GetInt32(2);
+            DateTime StartDate = rdr.GetDateTime(3);
+
+            Stylist foundStylist = new Stylist(Name, Wage, StartDate, Id);
 
             conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
             }
-            return newId;
+            return foundStylist;
         }
 
 

@@ -17,9 +17,9 @@ Game and GamePlay
 | **Create stylist class** |  |  |  |
 | *Test ClearAll function* | 0 = "stylist.GetAll()" | true | Make sure that the database is able to properly remove all of the items |
 | *Test create function* | "Jose" = "Jose" | true | Make sure the create command is properly storing data in the database |
-| *Test GetAll function** | 2 = "stylist.GetAll()" | true | Make sure the GetAll is properly retrieving all of the items in the database |
-| *Test Delete function* | 0 = "stylist.GetAll()" | true | Make sure the create command is properly storing data in the database |
-| *Test Find function** | "Jose" = "stylist.Find().Name" | true | Ensure the database returns the proper stylist after a find method is called |
+| *Test GetAll function** | 3 = "stylist.GetAll()" | true | Make sure the GetAll is properly retrieving all of the items in the database |
+| *Test Delete function* | 2 = "stylist.GetAll()" | true | Make sure the create command is properly storing data in the database |
+| *Test Find function** | newstylist.Id = "Stylist.Find(id).Name" | true | Ensure the database returns the proper stylist after a find method is called |
 | **Create client class** |  |  |  |
 | *Test ClearAll function* | 0 = "client.GetAll()" | true | Make sure that the database is able to properly remove all of the items |
 | *Test create function* | "Maggie" = "Maggie" | true | Make sure the create command is properly storing data in the database |
