@@ -84,18 +84,19 @@ namespace HairSalon.Tests
         Assert.AreEqual(result, 2);
     }
 
-    // [TestMethod] // test to see if find function returns proper stylist
-    // public void Find_FindClient_Name ()
-    // {
-    //     Client.ClearAll();
-    //     Client newClient1 = new Client ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
-    //     Console.WriteLine(newClient1.Id);
-    //     newClient1.Create();
-    //     Console.WriteLine(newClient1.Id);
-    //     Client test = Client.Find(newClient1.Id);
-    //     Console.WriteLine(test.Id);
-    //     Assert.AreEqual("Jose", test.Name);
-    // }
+    [TestMethod] // test to see if find function returns proper stylist
+    public void Find_FindClient_Name ()
+    {
+        Client.ClearAll();
+        Stylist.ClearAll();
+        Stylist newStylist = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        newStylist.Create();
+        int inputId = newStylist.Id;
+        Client newClient1 = new Client ("Ben", "123 Main", "123-133-3333", inputId);
+        newClient1.Create();
+        Client test = Client.Find(newClient1.Id);
+        Assert.AreEqual("Ben", test.Name);
+    }
 
     // [TestMethod]
     // public void Update_ChangeClientNameCorrectly_True()

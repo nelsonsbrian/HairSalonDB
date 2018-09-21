@@ -75,11 +75,8 @@ namespace HairSalon.Tests
     {
         Stylist.ClearAll();
         Stylist newStylist1 = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
-        Console.WriteLine(newStylist1.Id);
         newStylist1.Create();
-        Console.WriteLine(newStylist1.Id);
         Stylist test = Stylist.Find(newStylist1.Id);
-        Console.WriteLine(test.Id);
         Assert.AreEqual("Jose", test.Name);
     }
 
