@@ -1,0 +1,53 @@
+@using HairSalon.Models
+
+<div class="jumbotron">
+  <h1>3rd Street Hair Salon: Roster/Client Base</hr>
+</div>
+<div class="container-fluid">
+    <h1>Stylist: @Model.Name 's Client list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">StartDate</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope='col'>Schedule</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+
+        @foreach (Client client in @Client.GetAll())
+        {
+          @if(client.StylistId == @Model.Id)
+          {
+            <tbody>
+              <tr>
+                <td>@client.Name</td>
+                <td>@client.Address</td>
+                <td>
+                  <a href='#' method='get'>@client.Phone</a>
+                </td>
+                <td>
+                  <form action='/stylists/client/schedule/@client.Id' method='get'>
+                    <button class='btn btn-primary' type='submit'>Schedule for Appointment</button>
+                </td>
+                <td>
+                  <form action='/stylists/client/delete/@client.Id' method='get'>
+                    <button class='btn btn-danger' type='submit'>Delete</button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          }
+        }
+    </table>
+
+    <form action='/stylists' method='get'>
+        <button class='btn btn-info'>Back to Roster</button>
+    </form><br>
+
+    <form action='/' method='get'>
+        <button class='btn btn-info'>Back to Home</button>
+    </form><br>
+<div>

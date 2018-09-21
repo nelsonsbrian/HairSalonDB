@@ -1,0 +1,17 @@
+@using HairSalon.Models
+
+<div class="jumbotron">
+  <h1>3rd Street Hair Salon: Roster/Client Base</hr>
+</div>
+<div class="container-fluid">
+    <h1>Client: @Model.Name</h1><br>
+    <p>Thanks for booking an appointment</p>
+
+    <form action='/stylists' method='get'>
+        <button class='btn btn-info'>Go to Roster</button>
+    </form><br>
+
+    <form action='/' method='get'>
+        <button class='btn btn-info'>Back to Home</button>
+    </form><br>
+<div>

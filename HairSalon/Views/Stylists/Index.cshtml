@@ -12,14 +12,14 @@
                 <input type="text" name="newName" class="form-control" required>
                 <label>Start Date</label>
                 <input type="date" name="newStartDate" class="form-control" required>
-                <label>Pay</label>
+                <label>Wage</label>
                 <input type="number" name="newPay" class="form-control" required>
                 <button class='btn btn-success'>Add Stylist</button>
             </form>
             <hr>
             @foreach (Stylist stylist in @Stylist.GetAll())
             {
-            @stylist.Name<br>
+              <a href='/stylists/details/@stylist.Id' method='get'>@stylist.Name</a><br>
             } <br>
             <h4>Clients</h4>
             <form class="form-group" action='/stylists/Client/Create' method='post'>
@@ -34,30 +34,30 @@
                   <option value=""></option>
                   @foreach (Stylist stylist in @Stylist.GetAll())
                   {
-                  <option value="@stylist.Id">@stylist.Name</option>
+                    <option value="@stylist.Id">@stylist.Name</option>
                   }
               </select>
                 <button class='btn btn-success'>Add Client</button>
             </form>
             <hr>
 
-            @foreach (Client clients in @Client.GetAll())
+            @foreach (Client client in @Client.GetAll())
             {
-            @clients.Name<br>
+              <a href='/stylists/details/@client.StylistId' method='get'>@client.Name</a><br>
             }<br>
             <form action='/' method='get'>
                 <button class='btn btn-info'>Back to Home</button>
             </form><br>
         </div>
         <div class="col">
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Stylist Name</th>
                         <th scope="col">StartDate</th>
                         <th scope="col">Wage</th>
                         <th scope="col">Clients</th>
-                        <th scope="col">Add</th>
+
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -66,7 +66,9 @@
                 {
                 <tbody>
                     <tr>
-                        <td>@stylist.Name</td>
+                        <td>
+                          <a href="/stylists/details/@stylist.Id" method="get">@stylist.Name</a>
+                        </td>
                         <td>@stylist.StartDate</td>
                         <td>@stylist.Wage</td>
                         <td>
@@ -74,28 +76,13 @@
                             {
                                 @if(@client.StylistId == stylist.Id)
                                 {
-                                  @client.Name;
+                                  <a href='/stylists/details/@client.StylistId' method='get'>@client.Name</a>
                                   <a href="/stylists/client/delete/@client.Id" method='get'>>Delete<</a>
                                   <br>
                                 }
                             }
                         </td>
-                        <td>
-                            <form action='/restaurants/restaurant.Id/Add' method='post'>
-                                <div>
-                                    <select name="clientsSelect">
 
-                                        @foreach (Client client in @Client.GetAll())
-                                        {
-                                        <option value="@client.Id">@client.Name</option>
-
-                                        }
-                                    </select>
-                                    <button class='btn btn-success' type='submit'>Add Client</button>
-                                </div>
-                            </form>
-
-                        </td>
                         <td>
                             <form action='/stylists/delete/@stylist.Id' method='post'>
                                 <button class='btn btn-danger' type='submit'>Delete</button>
