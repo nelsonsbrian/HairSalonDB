@@ -141,22 +141,16 @@ namespace HairSalon.Models
         public List<Stylist> GetStylists()
         {
           List<Stylist> foundStylist = new List<Stylist> {};
+
           MySqlConnection conn = DB.Connection();
           conn.Open();
 
-          var cmd = conn.CreateCommand()as MySqlCommand;
-
+          var cmd = conn.CreateCommand() as MySqlCommand;
           cmd.CommandText = @"SELECT stylists.* FROM specialties
-            JOIN stylists_specialties ON (specialties.id = specialty_id)
-            JOIN stylists ON (stylists.id = stylist_id)
-            WHERE stylists_specialties.id = @thisID;";
-          cmd.Parameters.AddWithValue("@thisID", this.Id);
-
-          // cmd.CommandText = @"SELECT stylists.* FROM stylists
-          // JOIN stylists_specialties ON (stylist_id = stylists.id)
-          // JOIN specialties ON (specialties.id = specialty_id)
-          // WHERE stylist_id = @stylistID;";
-          // cmd.Parameters.AddWithValue("@stylistID", this.Id);
+          JOIN stylists_specialties ON (specialty_id = specialties.id)
+          JOIN stylists ON (stylists.id = stylist_id)
+          WHERE specialty_id = @specialtyID;";
+          cmd.Parameters.AddWithValue("@specialtyID", this.Id);
 
           MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
 
