@@ -70,13 +70,13 @@ namespace HairSalon.Controllers
         }
 
         [HttpGet("/specialty/details/{id}")]
-        public ActionResult ClientCreate(int id)
+        public ActionResult SpecialtyDetails(int id)
         {
             return View("Specialty", Specialty.Find(id));
         }
 
-        [HttpPost("/stylists/specialty/add/{styleId}}")]
-        public ActionResult ClientCreate(int styleId, int newSpecialty)
+        [HttpPost("/stylists/specialty/add/{styleId}")]
+        public ActionResult ClientAddSpecialty(int styleId, string newSpecialty)
         {
             Stylist.Find(styleId).AddSpecialty(int.Parse(newSpecialty));
             return RedirectToAction("Index");
