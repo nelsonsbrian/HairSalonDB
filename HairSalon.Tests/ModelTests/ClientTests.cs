@@ -98,18 +98,23 @@ namespace HairSalon.Tests
         Assert.AreEqual("Ben", test.Name);
     }
 
-    // [TestMethod]
-    // public void Update_ChangeClientNameCorrectly_True()
-    // {
-    //     Client newFood = new Client("Mexican");
-    //
-    //     newFood.Create();
-    //     Console.WriteLine(newFood.Id);
-    //     newFood.Update("Fake Mexican");
-    //
-    //     Client result = Client.GetAll()[0];
-    //
-    //     Assert.AreEqual("Fake Mexican",newFood.FoodType);
-    // }
+    [TestMethod]
+    public void Update_ChangeClientNameCorrectly_True()
+    {
+        Client.ClearAll();
+        Stylist.ClearAll();
+        Stylist newStylist = new Stylist ("Jose", 30,  Convert.ToDateTime("2018-02-02"));
+        newStylist.Create();
+        int inputId = newStylist.Id;
+        Client newClient = new Client ("Nen", "132 Main", "33-133-3333", inputId+1);
+        newClient.Create();
+        newClient.Update("Ben", "123 Main", "123-133-3333", inputId);
+        Client testClient = Client.Find(newClient.Id);
+        Assert.AreEqual("Ben", testClient.Name);
+        Assert.AreEqual("123 Main", testClient.Address);
+        Assert.AreEqual("123-133-3333", testClient.Phone);
+        Assert.AreEqual(inputId, testClient.StylistId);
+
+    }
   }
 }

@@ -10792,11 +10792,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Brian Nelson\\Desktop\\Hair Salon\\HairSalon.Tests\\HairSalon.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Brian Nelson\\desktop\\Hair Salon\\HairSalon.Tests\\HairSalon.Tests.csproj",
       "projectName": "HairSalon.Tests",
-      "projectPath": "C:\\Users\\Brian Nelson\\Desktop\\Hair Salon\\HairSalon.Tests\\HairSalon.Tests.csproj",
+      "projectPath": "C:\\Users\\Brian Nelson\\desktop\\Hair Salon\\HairSalon.Tests\\HairSalon.Tests.csproj",
       "packagesPath": "C:\\Users\\Brian Nelson\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Brian Nelson\\Desktop\\Hair Salon\\HairSalon.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Brian Nelson\\desktop\\Hair Salon\\HairSalon.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Brian Nelson\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10813,8 +10813,8 @@
       "frameworks": {
         "netcoreapp1.0.4": {
           "projectReferences": {
-            "C:\\Users\\Brian Nelson\\Desktop\\Hair Salon\\HairSalon\\HairSalon.csproj": {
-              "projectPath": "C:\\Users\\Brian Nelson\\Desktop\\Hair Salon\\HairSalon\\HairSalon.csproj"
+            "C:\\Users\\Brian Nelson\\desktop\\Hair Salon\\HairSalon\\HairSalon.csproj": {
+              "projectPath": "C:\\Users\\Brian Nelson\\desktop\\Hair Salon\\HairSalon\\HairSalon.csproj"
             }
           }
         }

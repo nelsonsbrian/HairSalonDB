@@ -106,27 +106,26 @@ namespace HairSalon.Models
             }
         }
 
-        // public void Update(string newFoodType)
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     var cmd = conn.CreateCommand()as MySqlCommand;
-        //     cmd.CommandText = @"UPDATE `clients` SET food = @NewType WHERE id = @thisId;";
-        //
-        //     MySqlParameter foodType = new MySqlParameter();
-        //     cmd.Parameters.AddWithValue("@NewType", newFoodType);
-        //     MySqlParameter Id = new MySqlParameter();
-        //     cmd.Parameters.AddWithValue("@thisId", this.Id);
-        //     this.FoodType = newFoodType;
-        //     cmd.ExecuteNonQuery();
-        //
-        //     conn.Close();
-        //     if (conn != null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        // }
+        public void Update(string newName, string newAddress, string newPhone, int newStylistId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand()as MySqlCommand;
+            cmd.CommandText = @"UPDATE `clients` SET name = @newName, address = @newAddress, phone = @newPhone, stylist_id = @newStylistId WHERE id = @thisId;";
+            cmd.Parameters.AddWithValue("@newName", newName);
+            cmd.Parameters.AddWithValue("@newAddress", newAddress);
+            cmd.Parameters.AddWithValue("@newPhone", newPhone);
+            cmd.Parameters.AddWithValue("@newStylistId", newStylistId);
+            cmd.Parameters.AddWithValue("@thisId", this.Id);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
 
         public static Client Find(int clientId)
         {
@@ -134,18 +133,24 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand()as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM `clients` WHERE id = @id;";
+            cmd.CommandText = @"SELECT * FROM clients WHERE id = @id;";
             cmd.Parameters.AddWithValue("@id", clientId);
 
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-            rdr.Read();
+            int Id = 0;
+            string Name = "";
+            string Address = "";
+            string Phone = "";
+            int StylistId = 0;
 
-            int Id = rdr.GetInt32(0);
-            string Name = rdr.GetString(1);
-            string Address = rdr.GetString(2);
-            string Phone = rdr.GetString(3);
-            int StylistId = rdr.GetInt32(4);
-
+            while (rdr.Read())
+            {
+              Id = rdr.GetInt32(0);
+              Name = rdr.GetString(1);
+              Address = rdr.GetString(2);
+              Phone = rdr.GetString(3);
+              StylistId = rdr.GetInt32(4);
+            }
             Client foundClient = new Client(Name, Address, Phone, StylistId, Id);
 
             conn.Close();
@@ -155,23 +160,6 @@ namespace HairSalon.Models
             }
             return foundClient;
         }
-
-
-        // public static bool ExistingClient(string cuisineName)
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-
-        //     var cmd = conn.CreateCommand()as MySqlCommand;
-        //     cmd.CommandText = @"SELECT food FROM `cuisines`";
-        //      MySqlDataReader rdr = cmd.ExecuteReader()as MySqlDataReader;
-        //     List<Client> allC
-        //      while (rdr.Read())
-        //      {
-
-        //      }
-
-        // }
 
     }
 }

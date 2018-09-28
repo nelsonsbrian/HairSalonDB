@@ -102,27 +102,24 @@ namespace HairSalon.Models
             }
         }
 
-        // public void Update(string newFoodType)
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     var cmd = conn.CreateCommand()as MySqlCommand;
-        //     cmd.CommandText = @"UPDATE `stylists` SET food = @NewType WHERE id = @thisId;";
-        //
-        //     MySqlParameter foodType = new MySqlParameter();
-        //     cmd.Parameters.AddWithValue("@NewType", newFoodType);
-        //     MySqlParameter Id = new MySqlParameter();
-        //     cmd.Parameters.AddWithValue("@thisId", this.Id);
-        //     this.FoodType = newFoodType;
-        //     cmd.ExecuteNonQuery();
-        //
-        //     conn.Close();
-        //     if (conn != null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        // }
+        public void Update(string newName, int newWage)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand()as MySqlCommand;
+            cmd.CommandText = @"UPDATE `stylists` SET name = @newName, wage = @newWage WHERE id = @thisId;";
+            cmd.Parameters.AddWithValue("@newName", newName);
+            cmd.Parameters.AddWithValue("@newWage", newWage);
+            cmd.Parameters.AddWithValue("@thisId", this.Id);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
 
         public static Stylist Find(int stylistId)
         {
