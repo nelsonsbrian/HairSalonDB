@@ -1,0 +1,26 @@
+@using HairSalon.Models
+
+<div class="jumbotron">
+  <h1>Snappy Snips Hair Salon: Edit Stylist</hr>
+</div>
+<div class="container-fluid">
+    <h1>Stylist: @Model.Name</h1>
+    <div class="col-md-2">
+      <form class="form-group" action='/master/stylists/@Model.Id/update' method='post'>
+        <label>Stylist name</label>
+        <input type="text" name="newName" class="form-control" value='@Model.Name' required>
+        <label>Wage</label>
+        <input type="number" name="newWage" class="form-control" value='@Model.Wage' required>
+        <button class='btn btn-success mt-3'>Update Stylist</button>
+      </form>
+
+      <form action='/stylists' method='get'>
+        <button class='btn btn-info'>Back to Roster</button>
+      </form><br>
+
+      <form action='/' method='get'>
+        <button class='btn btn-info'>Back to Home</button>
+      </form><br>
+
+    </div>
+<div>

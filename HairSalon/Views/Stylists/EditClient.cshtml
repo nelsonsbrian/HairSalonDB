@@ -1,0 +1,42 @@
+@using HairSalon.Models
+
+<div class="jumbotron">
+  <h1>Snappy Snips Hair Salon: Edit Client</hr>
+</div>
+<div class="container-fluid">
+    <h1>Client: @Model.Name</h1>
+    <div class="col-md-2">
+      <form class="form-group" action='/master/client/@Model.Id/update' method='post'>
+        <label>Client name</label>
+        <input type="text" name="newName" class="form-control" value='@Model.Name' required>
+        <label>Address</label>
+        <input type="text" name="newAddress" class="form-control" value='@Model.Address' required>
+        <label>Phone</label>
+        <input type="tel" name="newphone" class="form-control" value='@Model.Phone' required>
+        <label>Stylist</label>
+        <select name="newStylistId" class="form-control" required>
+          @foreach (Stylist stylist in @Stylist.GetAll())
+          {
+            @if(@stylist.Id == @Model.StylistId)
+            {
+              <option value="@stylist.Id">Current - @stylist.Name</option>
+            }
+            else
+            {
+              <option value="@stylist.Id">@stylist.Name</option>
+            }
+          }
+        </select>
+        <button class='btn btn-success mt-3'>Update Client</button>
+      </form>
+
+      <form action='/stylists' method='get'>
+        <button class='btn btn-info'>Back to Roster</button>
+      </form><br>
+
+      <form action='/' method='get'>
+        <button class='btn btn-info'>Back to Home</button>
+      </form><br>
+
+    </div>
+<div>

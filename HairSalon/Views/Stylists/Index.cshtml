@@ -7,6 +7,10 @@
     <h1>Stylists</h1>
     <div class="row">
         <div class="col-md-2">
+          <h1>Master Data</h1>
+          <form action='/master' method='get'>
+            <button class='btn btn-warning mt-3'>Master Data</button>
+          </form><br>
             <h4>Stylists</h4>
             <form class="form-group" action='/stylists/Create' method='post'>
                 <label>Stylist name</label>
@@ -46,9 +50,6 @@
             {
               <a href='/stylists/details/@client.StylistId' method='get'>@client.Name</a><br>
             }<br>
-            <form action='/' method='get'>
-                <button class='btn btn-info'>Back to Home</button>
-            </form><br>
             <h4>Specialties</h4>
             <form class="form-group" action='/stylists/specialty/create' method='post'>
               <label>Specialty Description</label>
@@ -98,7 +99,7 @@
                           }
                           <form class="form-group" action='/stylists/specialty/add/@stylist.Id' method='post'>
                             <label for="newSpecialty">Add Specialty</label>
-                            <select name="newSpecialty" class="form-control" required>
+                            <select name="newSpecialty" class="" required>
                                 <option value=""></option>
                                 @foreach (Specialty specialty in @Specialty.GetAll())
                                 {

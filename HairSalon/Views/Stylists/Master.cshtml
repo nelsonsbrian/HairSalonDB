@@ -1,0 +1,56 @@
+@using HairSalon.Models
+
+<div class="jumbotron">
+  <h1>Snappy Snips Hair Salon: Master Data</hr>
+</div>
+<div class="container">
+    <h1>Fields</h1>
+    <form action='/stylists' method='get'>
+        <button class='btn btn-info mt-3'>Back to Roster</button>
+    </form>
+    <form action='/' method='get'>
+        <button class='btn btn-info ml-3 mt-3'>Back Home</button>
+    </form><br>
+    <div class="row">
+        <div class="col-md-4">
+          <form action='/master/client/delete' method='get'>
+              <h2>Clients</h2>
+              <button class='btn btn-danger ml-3 mt-3'>Delete All</button>
+          </form><br>
+          @foreach(Client client in Client.GetAll())
+          {
+            @client.Name
+            <a href="/master/client/@client.Id/delete">-Delete</a>
+            <a href='/master/client/@client.Id/update'>-Edit</a>
+            <br>
+          }
+        </div>
+        <div class="col-md-4">
+          <form action='/master/stylists/delete' method='get'>
+              <h2>Stylists</h2>
+              <button class='btn btn-danger ml-3 mt-3'>Delete All</button>
+          </form><br>
+          @foreach(Stylist stylist in Stylist.GetAll())
+          {
+            @stylist.Name
+            <a href="/master/stylists/@stylist.Id/delete">-Delete</a>
+            <a href='/master/stylists/@stylist.Id/update'>-Edit</a>
+            <br>
+          }
+        </div>
+        <div class="col-md-4">
+          <form action='/master/specialties/delete' method='get'>
+              <h2>Specialties</h2>
+              <button class='btn btn-danger ml-3 mt-3'>Delete All</button>
+          </form><br>
+          @foreach(Specialty specialty in Specialty.GetAll())
+          {
+            @specialty.Description
+            <a href="/master/specialties/@specialty.Id/delete">-Delete</a>
+            <br>
+          }
+        </div>
+
+    </div>
+
+</div>

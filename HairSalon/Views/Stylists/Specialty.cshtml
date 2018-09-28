@@ -13,16 +13,9 @@
                 <th scope="col">Specialty</th>
                 <th scope="col">Wage</th>
                 <th scope="col">Clients</th>
-
                 <th scope="col">Delete</th>
             </tr>
         </thead>
-                @foreach (Stylist stylist in @Model.GetStylists())
-                {
-                  <p>@stylist.Name</p>
-                }
-        <p>@Stylist.GetAll()[1].GetSpecialties().Count</p>
-        <p>@Specialty.GetAll()[0].GetStylists().Count @Specialty.GetAll()[0].Description</p>
         @foreach (Stylist stylist in @Model.GetStylists())
         {
         <tbody>
@@ -35,7 +28,7 @@
                   @foreach (Specialty specialty in @stylist.GetSpecialties())
                   {
                     <a href='/specialty/details/@specialty.Id' method='get'>@specialty.Description</a>
-                    <a href="/stylists/specialty/delete/@specialty.Id" method='get'>>Remove<</a>
+                    <a href="/stylists/specialty/remove/@stylist.Id/@specialty.Id" method='get'>>Remove<</a>
                     <br>
                   }
                 </td>
