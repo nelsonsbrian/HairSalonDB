@@ -8,7 +8,14 @@
 
     <h2>@Model.Name's Details:</h2>
     <h6>Wage: $@Model.Wage/hr</h6>
-    <h6>Date Started: @Model.StartDate</h6><br>
+    <h6>Date Started: @Model.StartDate</h6>
+    <h6>Specialites:</h6>
+    <ul>
+      @foreach (Specialty specialty in @Model.GetSpecialties())
+      {
+        <li>@specialty.Description</li>
+      }
+    </ul><br>
     <table class="table table-striped">
         <thead>
             <tr>

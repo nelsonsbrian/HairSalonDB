@@ -34,7 +34,7 @@
                 <td>
                   @foreach (Specialty specialty in @stylist.GetSpecialties())
                   {
-                    <a href='/stylists/specialty/details/@specialty.Id' method='get'>@specialty.Description</a>
+                    <a href='/specialty/details/@specialty.Id' method='get'>@specialty.Description</a>
                     <a href="/stylists/specialty/delete/@specialty.Id" method='get'>>Remove<</a>
                     <br>
                   }
