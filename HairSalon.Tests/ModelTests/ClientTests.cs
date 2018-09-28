@@ -19,8 +19,9 @@ namespace HairSalon.Tests
 
     public void Dispose()
     {
-      Client.ClearAll();
+      Specialty.ClearAll();
       Stylist.ClearAll();
+      Client.ClearAll();
     }
 
     [TestMethod] // test to see if database is cleared between tests
