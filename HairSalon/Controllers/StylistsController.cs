@@ -53,6 +53,35 @@ namespace HairSalon.Controllers
         {
             return View("Schedule", Client.Find(id));
         }
+
+        [HttpGet("/stylists/specialty/remove/{styleId}/{specId}")]
+        public ActionResult SpecialtyDelete(int styleId, int specId)
+        {
+            Stylist.Find(styleId).RemoveSpecialty(specId);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost("/stylists/specialty/create")]
+        public ActionResult ClientCreate(string newDesc)
+        {
+            Specialty newSpecialty = new Specialty(newDesc);
+            newSpecialty.Create();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("/specialty/details/{id}")]
+        public ActionResult ClientCreate(int id)
+        {
+            return View("Specialty", Specialty.Find(id));
+        }
+
+        [HttpPost("/stylists/specialty/add/{styleId}}")]
+        public ActionResult ClientCreate(int styleId, int newSpecialty)
+        {
+            Stylist.Find(styleId).AddSpecialty(int.Parse(newSpecialty));
+            return RedirectToAction("Index");
+        }
+
     }
 
 }

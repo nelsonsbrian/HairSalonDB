@@ -1,0 +1,72 @@
+@using HairSalon.Models
+
+<div class="jumbotron">
+  <h1>Snappy Snips Hair Salon: Specialties</hr>
+</div>
+<div class="container-fluid">
+    <h1>Stylist: @Model.Description's Stylist list</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Stylist Name</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">Specialty</th>
+                <th scope="col">Wage</th>
+                <th scope="col">Clients</th>
+
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+                @foreach (Stylist stylist in @Model.GetStylists())
+                {
+                  <p>@stylist.Name</p>
+                }
+        <p>@Stylist.GetAll()[1].GetSpecialties().Count</p>
+        <p>@Specialty.GetAll()[0].GetStylists().Count @Specialty.GetAll()[0].Description</p>
+        @foreach (Stylist stylist in @Model.GetStylists())
+        {
+        <tbody>
+            <tr>
+                <td>
+                  <a href="/stylists/details/@stylist.Id" method="get">@stylist.Name</a>
+                </td>
+                <td>@stylist.StartDate</td>
+                <td>
+                  @foreach (Specialty specialty in @stylist.GetSpecialties())
+                  {
+                    <a href='/stylists/specialty/details/@specialty.Id' method='get'>@specialty.Description</a>
+                    <a href="/stylists/specialty/delete/@specialty.Id" method='get'>>Remove<</a>
+                    <br>
+                  }
+                </td>
+                <td>@stylist.Wage</td>
+                <td>
+                    @foreach (Client client in @Client.GetAll())
+                    {
+                        @if (@client.StylistId == stylist.Id)
+                        {
+                          <a href='/stylists/details/@client.StylistId' method='get'>@client.Name</a>
+                          <a href="/stylists/client/delete/@client.Id" method='get'>>Delete<</a>
+                          <br>
+                        }
+                    }
+                </td>
+
+                <td>
+                    <form action='/stylists/delete/@stylist.Id' method='post'>
+                        <button class='btn btn-danger' type='submit'>Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+        }
+    </table>
+
+    <form action='/stylists' method='get'>
+        <button class='btn btn-info'>Back to Roster</button>
+    </form><br>
+
+    <form action='/' method='get'>
+        <button class='btn btn-info'>Back to Home</button>
+    </form><br>
+<div>

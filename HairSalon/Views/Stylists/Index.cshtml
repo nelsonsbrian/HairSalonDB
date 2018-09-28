@@ -15,7 +15,7 @@
                 <input type="date" name="newStartDate" class="form-control" required>
                 <label>Wage</label>
                 <input type="number" name="newPay" class="form-control" required>
-                <button class='btn btn-success'>Add Stylist</button>
+                <button class='btn btn-success mt-3'>Add Stylist</button>
             </form>
             <hr>
             @foreach (Stylist stylist in @Stylist.GetAll())
@@ -38,7 +38,7 @@
                     <option value="@stylist.Id">@stylist.Name</option>
                   }
               </select>
-                <button class='btn btn-success'>Add Client</button>
+                <button class='btn btn-success mt-3'>Add Client</button>
             </form>
             <hr>
 
@@ -49,6 +49,23 @@
             <form action='/' method='get'>
                 <button class='btn btn-info'>Back to Home</button>
             </form><br>
+            <h4>Specialties</h4>
+            <form class="form-group" action='/stylists/specialty/create' method='post'>
+              <label>Specialty Description</label>
+              <input type="text" name="newDesc" class="form-control" required>
+                <button class='btn btn-success mt-3'>Add Specialty</button>
+            </form>
+            <hr>
+
+            @foreach (Specialty specialty in @Specialty.GetAll())
+            {
+              <a href='/specialty/details/@specialty.Id' method='get'>@specialty.Description</a><br>
+            }<br>
+
+            <form action='/' method='get'>
+                <button class='btn btn-info mt-3'>Back to Home</button>
+            </form><br>
+
         </div>
         <div class="col">
             <table class="table table-striped">
@@ -56,6 +73,7 @@
                     <tr>
                         <th scope="col">Stylist Name</th>
                         <th scope="col">StartDate</th>
+                        <th scope="col">Specialty</th>
                         <th scope="col">Wage</th>
                         <th scope="col">Clients</th>
 
@@ -71,11 +89,30 @@
                           <a href="/stylists/details/@stylist.Id" method="get">@stylist.Name</a>
                         </td>
                         <td>@stylist.StartDate</td>
+                        <td>
+                          @foreach (Specialty specialty in @stylist.GetSpecialties())
+                          {
+                            <a href='/stylists/specialty/details/@specialty.Id' method='get'>@specialty.Description</a>
+                            <a href="/stylists/specialty/remove/@stylist.Id/@specialty.Id" method='get'>>Remove<</a>
+                            <br>
+                          }
+                          <form class="form-group" action='/stylists/specialty/add/@stylist.Id' method='post'>
+                            <label for="newSpecialty">Add Specialty</label>
+                            <select name="newSpecialty" class="form-control" required>
+                                <option value=""></option>
+                                @foreach (Specialty specialty in @Specialty.GetAll())
+                                {
+                                  <option value="@specialty.Id">@specialty.Description</option>
+                                }
+                            </select>
+                              <button class='btn btn-success mt-3'>Add Specialty</button>
+                          </form>
+                        </td>
                         <td>@stylist.Wage</td>
                         <td>
                             @foreach (Client client in @Client.GetAll())
                             {
-                                @if(@client.StylistId == stylist.Id)
+                                @if (@client.StylistId == stylist.Id)
                                 {
                                   <a href='/stylists/details/@client.StylistId' method='get'>@client.Name</a>
                                   <a href="/stylists/client/delete/@client.Id" method='get'>>Delete<</a>

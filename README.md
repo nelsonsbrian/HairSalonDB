@@ -20,6 +20,7 @@ Game and GamePlay
 | *Test GetAll function** | 3 = "stylist.GetAll()" | true | Make sure the GetAll is properly retrieving all of the items in the database |
 | *Test Delete function* | 2 = "stylist.GetAll()" | true | Make sure the create command is properly storing data in the database |
 | *Test Find function** | newstylist.Id = "Stylist.Find(id).Name" | true | Ensure the database returns the proper stylist after a find method is called |
+| *Test Add Specialty Function && Get All Specialties Function** | newstylist.AddSpecialty("Mens") THEN "Stylist.GetSpecialties == "Mens"" | true | Ensure the database adds specialties to stylists_specialties and then can return the list |
 | **Create client class** |  |  |  |
 | *Test ClearAll function* | 0 = "client.GetAll()" | true | Make sure that the database is able to properly remove all of the items |
 | *Test create function* | "Maggie" = "Maggie" | true | Make sure the create command is properly storing data in the database |
